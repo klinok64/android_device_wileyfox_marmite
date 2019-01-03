@@ -72,6 +72,11 @@ echo "18432,23040,27648,32256,55296,80640" > /sys/module/lowmemorykiller/paramet
 # For 64-bit arch, vmpressure_file_min = LMK minfree's last bin value
 echo 80640 > /sys/module/lowmemorykiller/parameters/vmpressure_file_min
 
+# Don't account allocstalls for <= 2GB RAM targets
+if [ $MemTotal -le 2097152 ]; then
+    echo 100 > /sys/module/vmpressure/parameters/allocstall_threshold
+fi
+
 # Let kernel know our image version/variant/crm_version
 if [ -f /sys/devices/soc0/select_image ]; then
     image_version="10:"
