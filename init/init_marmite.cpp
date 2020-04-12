@@ -99,6 +99,8 @@ void vendor_load_properties()
         /* Swift 2 */
         property_override("ro.product.model", "Swift 2");
         property_override("ro.media.maxmem", "10590068224");
+        // Reduce memory footprint
+        property_override("ro.config.avoid_gfx_accel", "true");
     }
     else if (cmv == "mv2")
     {
