@@ -56,6 +56,9 @@ on post-fs-data
     mkdir /data/vendor/dataqti 0770 radio radio
     chmod 0770 /data/vendor/dataqti
 
+    # Services
+    setprop init.svc.console stopped
+
 on early-boot
     # SSR setup
     write /sys/bus/msm_subsys/devices/subsys0/restart_level "related"
