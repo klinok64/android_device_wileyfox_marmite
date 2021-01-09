@@ -15,3 +15,7 @@
  PRODUCT_MAKEFILES := \
     $(LOCAL_DIR)/lineage_marmite.mk
 
+COMMON_LUNCH_CHOICES := \
+    lineage_marmite-user \
+    lineage_marmite-userdebug \
+    lineage_marmite-eng
