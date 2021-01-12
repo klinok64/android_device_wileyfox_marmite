@@ -9,4 +9,8 @@ allow vendor_init {
   tombstone_data_file
 }:dir { create search getattr open read setattr ioctl write add_name remove_name rmdir relabelfrom };
 
-allow vendor_init ipa_dev:file { create open write };
+allow vendor_init {
+  ipa_dev
+  proc_dirty
+  proc_dirty_ratio
+}:file w_file_perms;
