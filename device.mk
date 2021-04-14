@@ -339,6 +339,7 @@ PRODUCT_PACKAGES += \
 
 # RIL
 PRODUCT_PACKAGES += \
+    CarrierConfigOverlay \
     librmnetctl \
     libxml2 \
     libprotobuf-cpp-lite
