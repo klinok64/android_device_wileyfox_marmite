@@ -102,4 +102,3 @@ void vendor_load_properties()
     snprintf(density, sizeof(density), "%d", display_density);
     property_set("ro.sf.lcd_density", density);
 }
-
