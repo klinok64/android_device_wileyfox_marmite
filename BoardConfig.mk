@@ -16,6 +16,9 @@
 
 DEVICE_PATH := device/wileyfox/marmite
 
+# APEX
+OVERRIDE_TARGET_FLATTEN_APEX := true
+
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := msm8937
 TARGET_NO_BOOTLOADER := true
