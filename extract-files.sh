@@ -143,14 +143,6 @@ extract "${MY_DIR}/proprietary-files.txt" "${SRC}" "${SECTION}"
 
 DEVICE_BLOB_ROOT="$ANDROID_ROOT"/vendor/"$VENDOR"/"$DEVICE"/proprietary
 
-#
-# Hax libaudcal.so to store acdbdata in new path
-#
-sed -i "s|\/data\/vendor\/misc\/audio\/acdbdata\/delta\/|\/data\/vendor\/audio\/acdbdata\/delta\/\x00\x00\x00\x00\x00|g" \
-    "$DEVICE_BLOB_ROOT"/vendor/lib/libaudcal.so
-sed -i "s|\/data\/vendor\/misc\/audio\/acdbdata\/delta\/|\/data\/vendor\/audio\/acdbdata\/delta\/\x00\x00\x00\x00\x00|g" \
-    "$DEVICE_BLOB_ROOT"/vendor/lib64/libaudcal.so
-
 for HIDL_BASE_LIB in $(grep -lr "android\.hidl\.base@1\.0\.so" $DEVICE_BLOB_ROOT); do
     "${PATCHELF}" --remove-needed android.hidl.base@1.0.so "$HIDL_BASE_LIB" || true
 done
