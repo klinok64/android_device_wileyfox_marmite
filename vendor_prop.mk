@@ -137,12 +137,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # IMS
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.dbg.volte_avail_ovr=0 \
-    persist.dbg.vt_avail_ovr=0 \
-    persist.dbg.wfc_avail_ovr=0
-
-# IMS
-PRODUCT_PROPERTY_OVERRIDES += \
     persist.dbg.volte_avail_ovr=1 \
     persist.dbg.vt_avail_ovr=1
 
