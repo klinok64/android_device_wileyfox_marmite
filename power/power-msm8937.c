@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015,2018 The Linux Foundation. All rights reserved.
- * Copyright (C) 2018-2019 The LineageOS Project
+ * Copyright (C) 2018-2021 The LineageOS Project
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -101,12 +101,11 @@ int get_number_of_profiles() {
 }
 #endif
 
-static int set_power_profile(void* data) {
-    int profile = data ? *((int*)data) : 0;
+void set_power_profile(int profile) {
     int ret = -EINVAL;
     const char* profile_name = NULL;
 
-    if (profile == current_power_profile) return 0;
+    if (profile == current_power_profile) return;
 
     ALOGV("%s: Profile=%d", __func__, profile);
 
@@ -143,8 +142,9 @@ static int set_power_profile(void* data) {
     if (ret == 0) {
         current_power_profile = profile;
         ALOGD("%s: Set %s mode", __func__, profile_name);
+    } else {
+        ALOGE("Setting power profile failed. perf HAL not started?");
     }
-    return ret;
 }
 
 /**
@@ -325,11 +325,6 @@ static int process_activity_launch_hint(void* data) {
 
 int power_hint_override(power_hint_t hint, void* data) {
     int ret_val = HINT_NONE;
-
-    if (hint == POWER_HINT_SET_PROFILE) {
-        if (set_power_profile(data) < 0) ALOGE("Setting power profile failed. perfd not started?");
-        return HINT_HANDLED;
-    }
 
     // Skip other hints in high/low power modes
     if (current_power_profile == PROFILE_POWER_SAVE ||
