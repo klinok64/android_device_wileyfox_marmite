@@ -132,6 +132,12 @@ function blob_fixup() {
         vendor/lib64/libwvhidl.so)
             "${PATCHELF}" --replace-needed "libprotobuf-cpp-lite.so" "libprotobuf-cpp-lite-v29.so" "${2}"
             ;;
+        vendor/lib64/hw/gatekeeper.msm8937.so)
+            "${PATCHELF}" --set-soname gatekeeper.msm8937.so "${2}"
+            ;;
+        vendor/lib64/hw/keystore.msm8937.so)
+            "${PATCHELF}" --set-soname keystore.msm8937.so "${2}"
+            ;;
     esac
 }
 
