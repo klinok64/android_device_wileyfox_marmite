@@ -140,7 +140,7 @@ vendor/lib64/librpmb.so|ba775205529284dc5d2233f11462037538f763af
 vendor/lib64/libssd.so|0e988e6ef7b1d356f4b92a26a61b96a840de1d20
 
 # Gatekeeper - from tissot - PKQ1.180917.001.V10.0.4.0.PDHMIXM
-vendor/lib64/hw/gatekeeper.msm8953.so:vendor/lib64/hw/gatekeeper.msm8937.so|b4e94766c49769863d4c140e0a481cc7f2f26e37
+vendor/lib64/hw/gatekeeper.msm8953.so:vendor/lib64/hw/gatekeeper.msm8937.so|1955c54655b13e203f2cac1c561987b9ce25a7c4
 
 # GPS - from tissot - PKQ1.180917.001.V10.0.4.0.PDHMIXM
 vendor/bin/hw/vendor.qti.gnss@1.0-service|049201d8e22064b87eb52df208d8cda7066d140a
@@ -284,7 +284,7 @@ vendor/lib64/vendor.qti.imsrtpservice@1.0-service-Impl.so|f4eef520bbf98e6e1ac869
 vendor/lib64/vendor.qti.imsrtpservice@1.0.so|559a2dbf409d86746ed4303f2e0089256bb91a07
 
 # Keymaster - from tissot - PKQ1.180917.001.V10.0.4.0.PDHMIXM
-vendor/lib64/hw/keystore.msm8953.so:vendor/lib64/hw/keystore.msm8937.so|eb4d65e03cbfffbbe134c7a140b1ef1677c630e7
+vendor/lib64/hw/keystore.msm8953.so:vendor/lib64/hw/keystore.msm8937.so|085b57df8647c81050e30766a277e71850a21fc0
 
 # Listen - from tissot - PKQ1.180917.001.V10.0.4.0.PDHMIXM
 vendor/lib/hw/sound_trigger.primary.msm8953.so:vendor/lib/hw/sound_trigger.primary.msm8937.so|0e716aae6fe6fc4a8b9553953765f64614647e7d
