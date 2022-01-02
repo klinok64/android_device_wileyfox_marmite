@@ -252,7 +252,6 @@ static int process_video_encode_hint(void* metadata) {
 static void process_interaction_hint(void* data) {
     static struct timespec s_previous_boost_timespec;
     static int s_previous_duration = 0;
-    static int interaction_handle = -1;
 
     struct timespec cur_boost_timespec;
     long long elapsed_time;
@@ -269,19 +268,26 @@ static void process_interaction_hint(void* data) {
     clock_gettime(CLOCK_MONOTONIC, &cur_boost_timespec);
 
     elapsed_time = calc_timespan_us(s_previous_boost_timespec, cur_boost_timespec);
-    // don't hint if previous hint's duration covers this hint's duration
-    if ((s_previous_duration * 1000) > (elapsed_time + duration * 1000)) {
+    // don't hint if it's been less than 250ms since last boost
+    // also detect if we're doing anything resembling a fling
+    // support additional boosting in case of flings
+    if (elapsed_time < 250000 && duration <= 750) {
         return;
     }
     s_previous_boost_timespec = cur_boost_timespec;
     s_previous_duration = duration;
 
-    if (CHECK_HANDLE(interaction_handle)) {
-        release_request(interaction_handle);
+    if (duration > kMinInteractiveDuration) {
+        perf_hint_enable_with_type(VENDOR_HINT_SCROLL_BOOST, duration, SCROLL_VERTICAL);
+    } else {
+        // cpu boost
+        int resources_interaction_boost[] = {
+            CPUBW_HWMON_MIN_FREQ, 0x33,
+            SCHED_BOOST_ON_V3, 0x1,
+            MIN_FREQ_BIG_CORE_0, 0x44C,
+        };
+        interaction(duration, ARRAY_SIZE(resources_interaction_boost), resources_interaction_boost);
     }
-
-    interaction_handle =
-            perf_hint_enable_with_type(VENDOR_HINT_SCROLL_BOOST, duration, SCROLL_VERTICAL);
 }
 
 static int process_activity_launch_hint(void* data) {
