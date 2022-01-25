@@ -283,6 +283,7 @@ static void process_interaction_hint(void* data) {
         // cpu boost
         int resources_interaction_boost[] = {
             CPUBW_HWMON_MIN_FREQ, 0x33,
+            SCHED_PREFER_IDLE_DIS_V3, 0x1,
             SCHED_BOOST_ON_V3, 0x1,
             MIN_FREQ_BIG_CORE_0, 0x44C,
         };
