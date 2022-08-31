@@ -252,6 +252,7 @@ static int process_video_encode_hint(void* metadata) {
 static void process_interaction_hint(void* data) {
     static struct timespec s_previous_boost_timespec;
     static int s_previous_duration = 0;
+    static int prev_interaction_handle = -1;
 
     struct timespec cur_boost_timespec;
     long long elapsed_time;
@@ -277,18 +278,13 @@ static void process_interaction_hint(void* data) {
     s_previous_boost_timespec = cur_boost_timespec;
     s_previous_duration = duration;
 
-    if (duration > kMinInteractiveDuration) {
-        perf_hint_enable_with_type(VENDOR_HINT_SCROLL_BOOST, duration, SCROLL_VERTICAL);
-    } else {
-        // cpu boost
-        int resources_interaction_boost[] = {
-            CPUBW_HWMON_MIN_FREQ, 0x33,
-            SCHED_PREFER_IDLE_DIS_V3, 0x1,
-            SCHED_BOOST_ON_V3, 0x1,
-            MIN_FREQ_BIG_CORE_0, 0x44C,
-        };
-        interaction(duration, ARRAY_SIZE(resources_interaction_boost), resources_interaction_boost);
+    int interaction_handle =
+            perf_hint_enable_with_type(VENDOR_HINT_SCROLL_BOOST, duration, SCROLL_VERTICAL);
+
+    if (CHECK_HANDLE(prev_interaction_handle)) {
+        release_request(prev_interaction_handle);
     }
+    prev_interaction_handle = interaction_handle;
 }
 
 static int process_activity_launch_hint(void* data) {
