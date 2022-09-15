@@ -56,7 +56,7 @@ static int video_encode_hint_sent;
 static int display_fd;
 #define SYS_DISPLAY_PWR "/sys/kernel/hbtp/display_pwr"
 
-const int kMinInteractiveDuration = 500;  /* ms */
+const int kMinInteractiveDuration = 750;  /* ms */
 const int kMaxInteractiveDuration = 5000; /* ms */
 const int kMaxLaunchDuration = 5000;      /* ms */
 
@@ -272,7 +272,7 @@ static void process_interaction_hint(void* data) {
     // don't hint if it's been less than 250ms since last boost
     // also detect if we're doing anything resembling a fling
     // support additional boosting in case of flings
-    if (elapsed_time < 250000 && duration <= 750) {
+    if (elapsed_time < 250000 && duration <= kMinInteractiveDuration) {
         return;
     }
     s_previous_boost_timespec = cur_boost_timespec;
