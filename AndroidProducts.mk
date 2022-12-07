@@ -13,9 +13,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
  PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/lineage_marmite.mk
+    $(LOCAL_DIR)/aosp_marmite.mk
 
 COMMON_LUNCH_CHOICES := \
-    lineage_marmite-user \
-    lineage_marmite-userdebug \
-    lineage_marmite-eng
+    aosp_marmite-user \
+    aosp_marmite-userdebug \
+    aosp_marmite-eng
