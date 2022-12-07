@@ -3,10 +3,8 @@
     "repository": "android_kernel_wileyfox_msm8937",
     "target_path": "kernel/wileyfox/msm8937"
   }
-]
-[
   {
     "repository": "android_hardware_wileyfox_marmite",
-    "target_path": "hardware/interfaces/"
+    "target_path": "hardware/lineage/"
   }
 ]
