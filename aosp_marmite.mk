@@ -17,12 +17,8 @@
 
 $(call inherit-product, device/wileyfox/marmite/full_marmite.mk)
 
-# Inherit some common LineageOS stuff
+# Inherit some common AOSP stuff
 $(call inherit-product, vendor/aosp/config/common_full_phone.mk)
-
-# Vendor security patch level
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.aosp.build.vendor_security_patch=2018-06-01
 
 # Set those variables here to overwrite the inherited values.
 PRODUCT_NAME := aosp_marmite
